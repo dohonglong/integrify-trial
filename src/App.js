@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
 
+import MyCardActions from './components/CardActions';
 import MyCardContent from './components/CardContent';
-import MyButton from './components/Button';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -19,21 +18,14 @@ function App() {
   return (
     <div className="App">
 
-      <Grid container spacing={5}>
+      <Grid container>
         {
           users.map((user, index) =>
-            <Grid item xs={3} key={index}>
+            <Grid item xs={12} md={3} sm={6} key={index} sx={{ padding: '50px' }} >
               <Card>
-
-                <MyCardContent 
-                  name={user.name}
-                  username={user.username}
-                  website={user.website}
-                />
-
-                <CardActions class="justify-center">
-                  <MyButton />
-                </CardActions>
+                
+                <MyCardContent name={user.name} username={user.username}  website={user.website}  />
+                <MyCardActions />
 
               </Card>
             </Grid>
