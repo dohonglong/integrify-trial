@@ -1,40 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import MyCardActions from './components/CardActions';
-import MyCardContent from './components/CardContent';
+import Home from './components/Home';
+import BreweryDetail from './components/BreweryDetail';
 
 function App() {
-  const [users, setUsers] = useState([]);
+  
+  const [breweries, setBreweries] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(resData => setUsers(resData))
+    fetch('https://api.openbrewerydb.org/breweries')
+      .then(response => response.json())
+      .then(resData => setBreweries(resData))
   }, []);
 
   return (
-    <div className="App">
+    <BrowserRouter>
+      <div>
 
-      <Grid container>
-        {
-          users.map((user, index) =>
-            <Grid item xs={12} md={3} sm={6} key={index} sx={{ padding: '50px' }} >
-              <Card>
-                
-                <MyCardContent name={user.name} username={user.username}  website={user.website}  />
-                <MyCardActions />
+        <Routes>
+          
+          <Route exact path="/" element={ <Home breweries={breweries} /> } />
 
-              </Card>
-            </Grid>
-          )
-        }
-            
-      </Grid>
+          <Route path="/page/:id" element={ <BreweryDetail props={breweries} /> } />
 
-    </div>
+        </Routes>
+      </div>
+    </BrowserRouter>
+
   );
 }
 
