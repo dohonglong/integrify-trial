@@ -2,22 +2,28 @@ import React from 'react';
 import '../App.css';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import CardActions from '@mui/material/CardActions';
-import Box from '@mui/material/Box';
-import { Link } from "react-router-dom";
 
+import MyCardContent from '../components/CardContent';
+import SearchBar from '../components/SearchBar';
+import MyCardActions from '../components/CardActions';
 
-import MyCardContent from './CardContent';
-import SearchBar from './SearchBar';
-
-function Home(props) {
+const Home = (props) => {
+    const input = props.input;
     const breweries = props.breweries;
+    
+    /*
+    const setKeyword = (event) => {
+        //console.log(breweries)
+        const results = _.filter(breweries, 
+            { 'brewery_type': event.target.value }
+        );
+        console.log(results);
+    } */
 
     return (
         <div className="App">
 
-            <SearchBar />
+            <SearchBar input={input} onChange={props.updateInput} />
 
             <Grid container>
                 {
@@ -27,13 +33,7 @@ function Home(props) {
                             
                             <MyCardContent name={brewery.name} brewery_type={brewery.brewery_type} city={brewery.city}  />
                             
-                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <CardActions>
-                                    <Link to={`/page/${brewery.id}`}>
-                                        <Button variant="contained">MORE DETAILS</Button>
-                                    </Link>   
-                                </CardActions>
-                            </Box>
+                            <MyCardActions id={brewery.id} />
 
                         </Card>
                     </Grid>
