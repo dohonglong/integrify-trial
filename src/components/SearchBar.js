@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchBar = ( {input: keyword, onChange: setKeyword} ) => {
+const SearchBar = ({ input: keyword, onChange: setKeyword, onClick: updateInput }) => {
 
     return (
 
@@ -9,9 +9,9 @@ const SearchBar = ( {input: keyword, onChange: setKeyword} ) => {
                 type="text" 
                 placeholder="Search here"
                 value={keyword}
-                onChange={(event) => setKeyword(event.target.value)}
+                onChange={setKeyword}
             />
-            <button >Search</button>
+            <button type="button" onClick={updateInput}>Search</button>
         </form>
     )
 }

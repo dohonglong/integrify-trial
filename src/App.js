@@ -19,12 +19,20 @@ function App() {
     })
   }, []);
 
-  const updateInput = (input) => {
-    const filtered = breweriesDefault.filter(brewery => {
-      return brewery.brewery_type.toLowerCase().includes(input.toLowerCase())
-    })
-    setInput(input)
-    setBreweries(filtered);
+  const setKeyword = (event) => {
+    const result = event.target.value.toLowerCase();
+    setInput(result);
+    console.log(result)
+    return result;
+    
+  }
+
+  const updateInput = () => {
+    const filtered = breweriesDefault.filter(entry => 
+      Object.values(entry).some(value => typeof value === "string" && value.includes(input)));
+    //setInput(input)
+    setBreweries(filtered)
+    //console.log(filtered)
   }
 
   return (
@@ -37,8 +45,9 @@ function App() {
             <Home 
               breweries={breweries} 
               breweriesDefault={breweriesDefault} 
-              input={input} 
-              updateInput={updateInput} 
+              input={input}
+              setKeyword={setKeyword}
+              updateInput={updateInput}
             /> 
           } />
 
