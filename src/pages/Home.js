@@ -14,7 +14,7 @@ const Home = (props) => {
     return (
         <div className="App">
 
-            <SearchBar input={input} onChange={props.setKeyword} onClick={props.updateInput} />
+            <SearchBar input={input} onChange={props.setKeyword} onClick={props.updateInput} onSubmit={props.handleSubmit} />
 
             <Grid container>
                 {

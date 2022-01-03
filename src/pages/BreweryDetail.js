@@ -1,9 +1,14 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const BreweryDetail = ( {props} ) => {
 
     const { id } = useParams();
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/");
+    }
     
     return (
         <div style={{ fontSize: "20px" }}>
@@ -23,6 +28,7 @@ const BreweryDetail = ( {props} ) => {
                             <p>state: {list.state}</p>
                             <p>county_province: {list.county_province}</p>
                             <p>postal_code: {list.postal_code}</p>
+                            <button type="button" onClick={handleClick}>Go Back</button>
                         </div>
                     ))
             }

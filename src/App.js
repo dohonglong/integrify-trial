@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
 import Home from './pages/Home';
 import BreweryDetail from './pages/BreweryDetail';
 
@@ -10,6 +11,7 @@ function App() {
   const [breweriesDefault, setBreweriesDefault] = useState();
   const [breweries, setBreweries] = useState([]);
 
+  //Fetch data
   useEffect(() => {
     fetch('https://api.openbrewerydb.org/breweries')
       .then(response => response.json())
@@ -19,20 +21,47 @@ function App() {
     })
   }, []);
 
+  //Get the input from the search bar
   const setKeyword = (event) => {
     const result = event.target.value.toLowerCase();
     setInput(result);
-    console.log(result)
+    //console.log(result)
     return result;
-    
   }
 
+  //From the input, update the fetch data and show it on the page
   const updateInput = () => {
-    const filtered = breweriesDefault.filter(entry => 
-      Object.values(entry).some(value => typeof value === "string" && value.includes(input)));
-    //setInput(input)
+    breweriesDefault.forEach(function(object) {
+      Object.keys(object).forEach(function(key) {
+        if (object[key] === null) 
+          object[key] = ' ';        
+      });
+    });
+    const filtered = breweriesDefault.filter(brewery => {
+      return  brewery.id.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.name.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.brewery_type.toLowerCase().includes(input.toLowerCase()) ||
+              brewery.street.toLowerCase().includes(input.toLowerCase()) ||
+              brewery.address_2.toLowerCase().includes(input.toLowerCase()) ||
+              brewery.address_3.toLowerCase().includes(input.toLowerCase()) ||
+              brewery.city.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.state.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.county_province.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.postal_code.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.country.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.longitude.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.latitude.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.phone.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.website_url.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.updated_at.toLowerCase().includes(input.toLowerCase()) || 
+              brewery.created_at.toLowerCase().includes(input.toLowerCase()) 
+    })
     setBreweries(filtered)
-    //console.log(filtered)
+  } 
+
+  //Prevent the enter button from re-render the page
+  const handleSubmit = (event) => {
+    event.preventDefault();
   }
 
   return (
@@ -48,6 +77,7 @@ function App() {
               input={input}
               setKeyword={setKeyword}
               updateInput={updateInput}
+              handleSubmit={handleSubmit}
             /> 
           } />
 

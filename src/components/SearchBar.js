@@ -1,10 +1,12 @@
 import React from "react";
 
-const SearchBar = ({ input: keyword, onChange: setKeyword, onClick: updateInput }) => {
+const SearchBar = ({ input: keyword, onChange: setKeyword, onClick: updateInput, onSubmit: handleSubmit }) => {
+
+
 
     return (
 
-        <form>
+        <form onSubmit={handleSubmit}>
             <input
                 type="text" 
                 placeholder="Search here"
