@@ -8,14 +8,11 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 
 const BreweryDetail = ( {props} ) => {
-
     const { id } = useParams();
     const navigate = useNavigate();
-
     function handleClick() {
         navigate("/");
     }
-    
     return (
         <div style={{ backgroundColor: '#F2F3F4', minHeight:'78vh', padding: '100px' }}>
             {
