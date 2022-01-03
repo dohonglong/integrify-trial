@@ -7,15 +7,12 @@ import SearchBar from '../components/SearchBar';
 import MyCardContent from '../components/CardContent';
 import MyCardActions from '../components/CardActions';
 
-const Home = (props) => {
+const Home = ( {props} ) => {
     const input = props.input;
     const breweries = props.breweries;
-    
     return (
         <div className="App" style={{ minHeight:'100vh' }}>
-
             <SearchBar input={input} onChange={props.setKeyword} onClick={props.updateInput} onSubmit={props.handleSubmit} />
-
             <Grid container>
                 {
                 breweries.map((brewery, index) =>

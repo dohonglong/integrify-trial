@@ -5,9 +5,7 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 
 const MyCardActions = (props) => {
-
     return (
-
         <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
             <CardActions>
                 <Link to={`/page/${props.id}`} style={{ textDecoration: 'none' }}>
