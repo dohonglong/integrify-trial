@@ -12,14 +12,14 @@ const Home = (props) => {
     const breweries = props.breweries;
     
     return (
-        <div className="App">
+        <div className="App" style={{ minHeight:'100vh' }}>
 
             <SearchBar input={input} onChange={props.setKeyword} onClick={props.updateInput} onSubmit={props.handleSubmit} />
 
             <Grid container>
                 {
                 breweries.map((brewery, index) =>
-                    <Grid item xs={12} md={4} sm={6} key={index} sx={{ padding: '50px' }} >
+                    <Grid item xs={12} md={4} sm={6} key={index} sx={{ padding: '30px' }} >
                         <Card key={brewery.id}>
                             
                             <MyCardContent name={brewery.name} brewery_type={brewery.brewery_type} city={brewery.city}  />

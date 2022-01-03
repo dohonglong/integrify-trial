@@ -2,8 +2,6 @@ import React from "react";
 
 const SearchBar = ({ input: keyword, onChange: setKeyword, onClick: updateInput, onSubmit: handleSubmit }) => {
 
-
-
     return (
 
         <form onSubmit={handleSubmit}>

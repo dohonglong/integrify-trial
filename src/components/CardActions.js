@@ -8,10 +8,10 @@ const MyCardActions = (props) => {
 
     return (
 
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
             <CardActions>
-                <Link to={`/page/${props.id}`}>
-                    <Button variant="contained">MORE DETAILS</Button>
+                <Link to={`/page/${props.id}`} style={{ textDecoration: 'none' }}>
+                    <Button size="large" variant="contained">MORE DETAILS</Button>
                 </Link>
             </CardActions>
         </Box>
